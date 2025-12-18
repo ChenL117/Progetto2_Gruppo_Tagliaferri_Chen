@@ -1,3 +1,6 @@
+const API_KEY = '677933007fc9b6feafc7c7a7fcd34d14';
+const grid = document.getElementById('movie-grid');
+
 const movies = [
   {
     id: 66732,
@@ -193,10 +196,6 @@ const movies = [
 ];
 export default movies
 
-const API_KEY = '677933007fc9b6feafc7c7a7fcd34d14';
-const grid = document.getElementById('movie-grid');
-
-// Funzione per ottenere il link JustWatch e aprire la pagina
 async function openJustWatch(id, type) {
     const url = `https://api.themoviedb.org/3/${type}/${id}/watch/providers?api_key=${API_KEY}`;
     
@@ -208,27 +207,39 @@ async function openJustWatch(id, type) {
         if (watchLink) {
             window.open(watchLink, '_blank');
         } else {
-            alert("Link JustWatch non trovato per l'Italia. Ti mando alla pagina TMDB.");
+            console.log("Link JustWatch non trovato, uso fallback TMDB");
             window.open(`https://www.themoviedb.org/${type}/${id}`, '_blank');
         }
     } catch (error) {
-        console.error("Errore:", error);
+        console.error("Errore nel recupero dei provider:", error);
     }
 }
 
-// Funzione per creare la galleria
 function renderMovies() {
+    if (!grid) return;
+    grid.innerHTML = '';
+
     movies.forEach(movie => {
         const card = document.createElement('div');
         card.className = 'movie-card';
-        card.innerHTML = `
-            <img src="${movie.poster}" alt="${movie.title}">
-            <p>${movie.title}</p>
-        `;
-        // Quando clicchi sulla card, attiva JustWatch
-        card.onclick = () => openJustWatch(movie.id, movie.type);
+        card.innerHTML = `<img src="${movie.poster}" alt="${movie.title}" style="cursor:pointer; width:100%;">`;
+        card.addEventListener('click', () => openJustWatch(movie.id, movie.type));
         grid.appendChild(card);
     });
 }
 
-renderMovies();
+function setupYearFilter() {
+    const selectAnno = document.getElementById('filter-anno');
+    if (!selectAnno) return;
+    for (let i = 2025; i >= 1980; i--) {
+        const opt = document.createElement('option');
+        opt.value = i;
+        opt.textContent = i;
+        selectAnno.appendChild(opt);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    setupYearFilter();
+    renderMovies();
+});

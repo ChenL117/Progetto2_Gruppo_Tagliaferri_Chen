@@ -215,6 +215,18 @@ async function openJustWatch(id, type) {
     }
 }
 
+// function renderMovies() {
+//     if (!grid) return;
+//     grid.innerHTML = '';
+
+//     movies.forEach(movie => {
+//         const card = document.createElement('div');
+//         card.className = 'movie-card';
+//         card.innerHTML = `<img src="${movie.poster}" alt="${movie.title}" style="cursor:pointer; width:100%;">`;
+//         card.addEventListener('click', () => openJustWatch(movie.id, movie.type));
+//         grid.appendChild(card);
+//     });
+// }
 function renderMovies() {
     if (!grid) return;
     grid.innerHTML = '';
@@ -222,8 +234,14 @@ function renderMovies() {
     movies.forEach(movie => {
         const card = document.createElement('div');
         card.className = 'movie-card';
+        // Creiamo l'HTML della card
         card.innerHTML = `<img src="${movie.poster}" alt="${movie.title}" style="cursor:pointer; width:100%;">`;
-        card.addEventListener('click', () => openJustWatch(movie.id, movie.type));
+        
+        // IL CODICE DEVE STARE QUI DENTRO per riconoscere "movie"
+        card.addEventListener('click', () => {
+            window.location.href = `detail.html?id=${movie.id}`;
+        });
+        
         grid.appendChild(card);
     });
 }
@@ -243,3 +261,4 @@ document.addEventListener('DOMContentLoaded', () => {
     setupYearFilter();
     renderMovies();
 });
+

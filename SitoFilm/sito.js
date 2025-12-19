@@ -174,24 +174,34 @@ const movies = [
   }
 ];
 
-// FUNZIONE PER MOSTRARE I FILM (Adesso accetta una lista variabile)
-function renderMovies(movieList = movies) {
-    if (!grid) return;
-    grid.innerHTML = ''; // Svuota la griglia
+function renderMovies() {
+  grid.innerHTML = "";
 
-    movieList.forEach(movie => {
-        const card = document.createElement('div');
-        card.className = 'movie-card';
-        card.innerHTML = `<img src="${movie.poster}" alt="${movie.title}" style="cursor:pointer; width:100%;">`;
-        
-        // Link alla pagina dettagli con l'ID
-        card.addEventListener('click', () => {
-            window.location.href = `detail.html?id=${movie.id}`;
-        });
-        
-        grid.appendChild(card);
+  const genere = document.getElementById("filter-genere").value;
+  const lingua = document.getElementById("filter-lingua").value;
+  const anno = document.getElementById("filter-anno").value;
+  const durata = document.getElementById("filter-durata").value;
+  const search = document.getElementById("main-search").value.toLowerCase();
+
+  movies
+    .filter(m => !genere || m.genre.includes(genere))
+    .filter(m => !lingua || m.language === lingua)
+    .filter(m => !anno || m.year == anno)
+    .filter(m => {
+      if (!durata) return true;
+      const h = parseInt(m.duration);
+      return durata === "long" ? h >= 2 : h < 2;
+    })
+    .filter(m => m.title.toLowerCase().includes(search))
+    .forEach(movie => {
+      const card = document.createElement("div");
+      card.className = "movie-card";
+      card.innerHTML = `<img src="${movie.poster}">`;
+      card.onclick = () => location.href = `detail.html?id=${movie.id}`;
+      grid.appendChild(card);
     });
 }
+
 
 // GESTIONE RICERCA
 if (searchInput) {
@@ -220,5 +230,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setupYearFilter();
     renderMovies();
 });
+
+["filter-genere", "filter-lingua", "filter-anno", "filter-durata", "main-search"]
+  .forEach(id => {
+    document.getElementById(id).addEventListener("change", renderMovies);
+    document.getElementById(id).addEventListener("input", renderMovies);
+  });
 
 export default movies;

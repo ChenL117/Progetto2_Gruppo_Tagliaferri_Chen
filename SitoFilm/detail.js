@@ -21,8 +21,9 @@ if (!movie) {
             <p><strong>Durata:</strong> ${movie.duration}</p>
 
             <br>
-            <button onclick="watchMovie()">Guarda il film</button>
+            <button onclick="watchMovie()">Guarda il ${movie.type} </button>
         </div>
+        
     `;
 }
 export default movie

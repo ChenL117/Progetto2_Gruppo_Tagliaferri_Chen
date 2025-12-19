@@ -16,42 +16,50 @@ body {
 }
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
   align-items: center;
   margin-bottom: 40px;
-  gap: 20px;
 }
 
+
+
 .filter-bar {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   background-color: #d1d1d1;
   border-radius: 2px;
   overflow: hidden;
 }
 
+
 .filter-item {
-  border-right: 1px solid #bbb;
   display: flex;
   align-items: center;
+  justify-content: center;
+  border-right: 1px solid #bbb;
 }
 
 .filter-item:last-child {
   border-right: none;
 }
 
+
 .filter-item select {
+  width: 100%;
+  text-align: center;
   background: transparent;
   border: none;
-  padding: clamp(6px, 1vw, 12px) clamp(10px, 1.5vw, 20px);
+  padding: clamp(8px, 1vw, 14px);
   font-size: clamp(12px, 1vw, 18px);
   font-family: inherit;
   cursor: pointer;
   outline: none;
   appearance: none;
   color: #333;
-  white-space: nowrap;
 }
+
 
 .filter-item:hover {
   background-color: #c5c5c5;
@@ -185,4 +193,9 @@ body {
   font-size: clamp(18px, 2vw, 26px);
   text-transform: uppercase;
 }
+
+.filter-item {
+  position: relative;
+}
+
 

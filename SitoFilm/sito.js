@@ -1,5 +1,7 @@
 const API_KEY = '677933007fc9b6feafc7c7a7fcd34d14';
 const grid = document.getElementById('movie-grid');
+// Recuperiamo l'input di ricerca (assicurati che nell'HTML abbia la classe 'search-input' o l'ID 'search')
+const searchInput = document.querySelector('.search-input') || document.getElementById('search-input');
 
 const movies = [
   {
@@ -12,12 +14,10 @@ const movies = [
     duration: "45–140 min",
     creator: "Matt e Ross Duffer",
     producers: ["Shawn Levy", "Dan Cohen"],
-    description:
-      "Nella cittadina di Hawkins, la scomparsa di un ragazzo porta alla luce esperimenti segreti, una ragazza con poteri psichici e una dimensione oscura chiamata Upside Down.",
+    description: "Nella cittadina di Hawkins, la scomparsa di un ragazzo porta alla luce esperimenti segreti, una ragazza con poteri psichici e una dimensione oscura chiamata Upside Down.",
     poster: "/images/stranger_things.jpg",
     watchLink: "https://www.themoviedb.org/tv/66732-stranger-things"
   },
-
   {
     id: 402431,
     title: "Wicked",
@@ -28,12 +28,10 @@ const movies = [
     duration: "2h 40m",
     creator: "Jon M. Chu",
     producers: ["Marc Platt"],
-    description:
-      "La storia inedita delle streghe di Oz, prima dell’arrivo di Dorothy, esplorando amicizia, potere e destino.",
+    description: "La storia inedita delle streghe di Oz, prima dell’arrivo di Dorothy, esplorando amicizia, potere e destino.",
     poster: "/images/wicked.jpg",
     watchLink: "https://www.themoviedb.org/movie/402431-wicked"
   },
-
   {
     id: 224141,
     title: "Into the Woods",
@@ -44,12 +42,10 @@ const movies = [
     duration: "2h 5m",
     creator: "Rob Marshall",
     producers: ["Marc Platt"],
-    description:
-      "Un musical che intreccia le fiabe classiche dei fratelli Grimm con conseguenze oscure e imprevedibili.",
+    description: "Un musical che intreccia le fiabe classiche dei fratelli Grimm con conseguenze oscure e imprevedibili.",
     poster: "/images/into_the_woods.jpg",
     watchLink: "https://www.themoviedb.org/movie/224141-into-the-woods"
   },
-
   {
     id: 4,
     title: "Aladdin",
@@ -60,12 +56,10 @@ const movies = [
     duration: "2h 8m",
     creator: "Guy Ritchie",
     producers: ["Dan Lin"],
-    description:
-      "Un giovane di strada scopre una lampada magica che cambierà il suo destino e quello del regno di Agrabah.",
+    description: "Un giovane di strada scopre una lampada magica che cambierà il suo destino e quello del regno di Agrabah.",
     poster: "/images/aladdin.jpg",
     watchLink: "https://www.imdb.com/title/tt6139732/"
   },
-
   {
     id: 420817,
     title: "The King's Man",
@@ -76,12 +70,10 @@ const movies = [
     duration: "2h 11m",
     creator: "Matthew Vaughn",
     producers: ["Matthew Vaughn"],
-    description:
-      "Le origini della prima agenzia di intelligence indipendente durante la Prima Guerra Mondiale.",
+    description: "Le origini della prima agenzia di intelligence indipendente durante la Prima Guerra Mondiale.",
     poster: "/images/the_kings_man.jpg",
     watchLink: "https://www.themoviedb.org/movie/420817-aladdin"
   },
-
   {
     id: 671,
     title: "Harry Potter (Saga)",
@@ -92,12 +84,10 @@ const movies = [
     duration: "2h+",
     creator: "Chris Columbus, David Yates",
     producers: ["David Heyman"],
-    description:
-      "La storia del giovane mago Harry Potter e della sua lotta contro il mago oscuro Voldemort.",
+    description: "La storia del giovane mago Harry Potter e della sua lotta contro il mago oscuro Voldemort.",
     poster: "/images/harry_potter.jpg",
     watchLink: "https://www.themoviedb.org/movie/671-harry-potter-and-the-philosopher-s-stone"
   },
-
   {
     id: 1218032,
     title: "Super Charlie",
@@ -108,12 +98,10 @@ const movies = [
     duration: "1h 30m",
     creator: "Jon Holmberg",
     producers: ["Nordisk Film"],
-    description:
-      "Charlie è un bambino con superpoteri che deve salvare il mondo con intelligenza e coraggio.",
+    description: "Charlie è un bambino con superpoteri che deve salvare il mondo con intelligenza e coraggio.",
     poster: "/images/super_charlie.jpg",
     watchLink: "https://www.themoviedb.org/movie/1218032-super-charlie"
   },
-
   {
     id: 939243,
     title: "Sonic the Hedgehog 3",
@@ -124,12 +112,10 @@ const movies = [
     duration: "2h",
     creator: "Jeff Fowler",
     producers: ["Neal H. Moritz"],
-    description:
-      "Sonic torna in una nuova avventura ad alta velocità contro nemici ancora più potenti.",
+    description: "Sonic torna in una nuova avventura ad alta velocità contro nemici ancora più potenti.",
     poster: "/images/sonic3.jpg",
     watchLink: "https://www.themoviedb.org/movie/939243-sonic-the-hedgehog-3"
   },
-
   {
     id: 71446,
     title: "La Casa di Carta: L'Accademia",
@@ -140,12 +126,10 @@ const movies = [
     duration: "50 min",
     creator: "Álex Pina",
     producers: ["Alejandro Pina Calafi"],
-    description:
-      "Uno spin-off ambientato nel mondo de La Casa di Carta, focalizzato sull’addestramento di nuovi criminali.",
+    description: "Uno spin-off ambientato nel mondo de La Casa di Carta, focalizzato sull’addestramento di nuovi criminali.",
     poster: "/images/lacasa_accademia.jpg",
     watchLink: "https://www.themoviedb.org/tv/71446-la-casa-de-papel"
   },
-
   {
     id: 1580902,
     title: "Zootopia 2",
@@ -156,12 +140,10 @@ const movies = [
     duration: "1h 50m",
     creator: "Jared Bush",
     producers: ["Yvett Merino"],
-    description:
-      "i neo-detective Judy Hopps e Nick Wilde si imbarcano in un nuovo mistero che coinvolge un misterioso rettile, Gary De'Snake, il cui arrivo sconvolge la metropoli animale. La trama si concentra sull'evoluzione del rapporto tra i due protagonisti, che devono imparare a superare le loro differenze caratteriali e a fidarsi l'uno dell'altra per risolvere il caso.",
+    description: "i neo-detective Judy Hopps e Nick Wilde si imbarcano in un nuovo mistero che coinvolge un misterioso rettile, Gary De'Snake, il cui arrivo sconvolge la metropoli animale.",
     poster: "/images/zootopia2.jpg",
     watchLink: "https://www.themoviedb.org/movie/1580902-zootopia-2-a-special-look"
   },
-
   {
     id: 508883,
     title: "Il ragazzo e l'airone",
@@ -172,12 +154,10 @@ const movies = [
     duration: "2h 4m",
     creator: "Hayao Miyazaki",
     producers: ["Studio Ghibli"],
-    description:
-      "Un ragazzo intraprende un viaggio fantastico tra dolore, crescita e mondi misteriosi.",
+    description: "Un ragazzo intraprende un viaggio fantastico tra dolore, crescita e mondi misteriosi.",
     poster: "/images/il_ragazzo_e_l_airone.jpg",
     watchLink: "https://www.themoviedb.org/movie/508883"
   },
-
   {
     id: 1108211,
     title: "消失的她 (Lost in the Stars)",
@@ -188,56 +168,23 @@ const movies = [
     duration: "2h 1m",
     creator: "Cui Rui",
     producers: ["China Film Group"],
-    description:
-      "Durante una vacanza, una donna scompare misteriosamente e la verità si rivela sempre più inquietante.",
+    description: "Durante una vacanza, una donna scompare misteriosamente e la verità si rivela sempre più inquietante.",
     poster: "/images/lost_in_the_stars.jpg",
     watchLink: "https://www.themoviedb.org/movie/1108211"
   }
 ];
-export default movies
 
-async function openJustWatch(id, type) {
-    const url = `https://api.themoviedb.org/3/${type}/${id}/watch/providers?api_key=${API_KEY}`;
-    
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        const watchLink = data.results?.IT?.link;
-
-        if (watchLink) {
-            window.open(watchLink, '_blank');
-        } else {
-            console.log("Link JustWatch non trovato, uso fallback TMDB");
-            window.open(`https://www.themoviedb.org/${type}/${id}`, '_blank');
-        }
-    } catch (error) {
-        console.error("Errore nel recupero dei provider:", error);
-    }
-}
-
-// function renderMovies() {
-//     if (!grid) return;
-//     grid.innerHTML = '';
-
-//     movies.forEach(movie => {
-//         const card = document.createElement('div');
-//         card.className = 'movie-card';
-//         card.innerHTML = `<img src="${movie.poster}" alt="${movie.title}" style="cursor:pointer; width:100%;">`;
-//         card.addEventListener('click', () => openJustWatch(movie.id, movie.type));
-//         grid.appendChild(card);
-//     });
-// }
-function renderMovies() {
+// FUNZIONE PER MOSTRARE I FILM (Adesso accetta una lista variabile)
+function renderMovies(movieList = movies) {
     if (!grid) return;
-    grid.innerHTML = '';
+    grid.innerHTML = ''; // Svuota la griglia
 
-    movies.forEach(movie => {
+    movieList.forEach(movie => {
         const card = document.createElement('div');
         card.className = 'movie-card';
-        // Creiamo l'HTML della card
         card.innerHTML = `<img src="${movie.poster}" alt="${movie.title}" style="cursor:pointer; width:100%;">`;
         
-        // IL CODICE DEVE STARE QUI DENTRO per riconoscere "movie"
+        // Link alla pagina dettagli con l'ID
         card.addEventListener('click', () => {
             window.location.href = `detail.html?id=${movie.id}`;
         });
@@ -246,6 +193,18 @@ function renderMovies() {
     });
 }
 
+// GESTIONE RICERCA
+if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+        const filtered = movies.filter(movie => 
+            movie.title.toLowerCase().includes(term)
+        );
+        renderMovies(filtered);
+    });
+}
+
+// FILTRO ANNO
 function setupYearFilter() {
     const selectAnno = document.getElementById('filter-anno');
     if (!selectAnno) return;
@@ -262,3 +221,4 @@ document.addEventListener('DOMContentLoaded', () => {
     renderMovies();
 });
 
+export default movies;

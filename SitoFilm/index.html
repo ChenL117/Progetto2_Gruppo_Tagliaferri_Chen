@@ -2,7 +2,8 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Sito film e serie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sito streaming film</title>
     <link rel="stylesheet" href="sito.css">
 </head>
 <body>
@@ -10,15 +11,44 @@
     <div class="main-wrapper">
         <header class="navbar">
             <div class="filter-bar">
-                <div class="filter-item">genere</div>
-                <div class="filter-item">lingua</div>
-                <div class="filter-item">anno d'uscita</div>
-                <div class="filter-item">durata</div>
+                
+                <div class="filter-item">
+                    <select id="filter-genere">
+                        <option value="" disabled selected>Genere</option>
+                        <option value="amore">Amore</option>
+                        <option value="azione">Azione</option>
+                        <option value="thriller">Thriller</option>
+                        <option value="horror">Horror</option>
+                        <option value="drama">Drama</option>
+                        <option value="commedia">Commedia</option>
+                    </select>
+                </div>
+
+                <div class="filter-item">
+                    <select id="filter-lingua">
+                        <option value="" disabled selected>Lingua</option>
+                        <option value="it">Italiano</option>
+                        <option value="en">Inglese</option>
+                    </select>
+                </div>
+
+                <div class="filter-item">
+                    <select id="filter-anno">
+                        <option value="" disabled selected>Anno d'uscita</option>
+                        </select>
+                </div>
+
+                <div class="filter-item">
+                    <select id="filter-durata">
+                        <option value="" disabled selected>durata</option>
+                        <option value="long">Più di 2h</option>
+                        <option value="short">Meno di 2h</option>
+                    </select>
+                </div>
             </div>
             
             <div class="search-bar">
-                <input type="text" placeholder="type...">
-                <span class="search-icon"></span>
+                <input type="text" id="main-search" placeholder="Cerca film...">
             </div>
         </header>
 
@@ -27,26 +57,33 @@
 
         <footer class="site-footer">
             <div class="footer-left">
-                <div class="logo-f">f</div>
-                <div class="social-icons"></div>
+                <div class="footer-logo">f</div>
+                <div class="social-links">
+                </div>
             </div>
             <div class="footer-columns">
                 <div class="col">
                     <strong>Use cases</strong>
-                    <span>UI Design</span><span>UX Design</span><span>Wireframing</span>
+                    <span>UI Design</span>
+                    <span>UX Design</span>
+                    <span>Wireframing</span>
                 </div>
                 <div class="col">
                     <strong>Explore</strong>
-                    <span>Design</span><span>Prototyping</span><span>Development</span>
+                    <span>Design</span>
+                    <span>Prototyping</span>
+                    <span>Development</span>
                 </div>
                 <div class="col">
                     <strong>Resources</strong>
-                    <span>Blog</span><span>Best practices</span><span>Colors</span>
+                    <span>Blog</span>
+                    <span>Best practices</span>
+                    <span>Colors</span>
                 </div>
             </div>
         </footer>
     </div>
-
+    <main id="movie-grid" class="movie-grid"></main>
     <script type="module" src="sito.js"></script>
 </body>
 </html>
